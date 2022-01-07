@@ -32,6 +32,9 @@ spec:
         cd api/
         make push
         cd ..
+        cd web/
+        make push
+        cd ..
         '''
       }
     }

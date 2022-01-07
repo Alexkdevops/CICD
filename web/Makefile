@@ -1,16 +1,14 @@
-version = 1.3
+version = 1.5
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
-image = $(account).dkr.ecr.us-east-1.amazonaws.com/webapp:$(version)
-namespace = webapi
+image = $(account).dkr.ecr.us-east-2.amazonaws.com/webapp:$(version)
 
 login:
-	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(account).dkr.ecr.us-east-1.amazonaws.com
+	aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $(account).dkr.ecr.us-east-2.amazonaws.com
 
-build:
+build: login
 	@docker build -t $(image) .
 
-push: login
-	@# docker login is not here
+push: build
 	@docker push $(image)
 
 deploy:
