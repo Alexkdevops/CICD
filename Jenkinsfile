@@ -24,26 +24,26 @@ spec:
 """
 ) {
     node(POD_LABEL) {
-      properties([
-	        pipelineTriggers([
-	          [$class: 'GitHubPushTrigger'],
-	          ])
-	    ])
-      checkout scm
-      container('jenkins-slave') {
-        sh ''' 
-        export AWS_DEFAULT_REGION=us-east-1
-        cd api/
-        make build
-        make push
-        make deploy
-        cd ..
-        cd web/
-        make build
-        make push
-        make deploy
-        cd ..
-        '''
+      // properties([
+	    //     pipelineTriggers([
+	    //       [$class: 'GitHubPushTrigger'],
+	    //       ])
+	    // ])
+      // checkout scm
+      container('busybox') {
+        sh "hostname ; sleep 60"
+        // export AWS_DEFAULT_REGION=us-east-1
+        // cd api/
+        // make build
+        // make push
+        // make deploy
+        // cd ..
+        // cd web/
+        // make build
+        // make push
+        // make deploy
+        // cd ..
+        // '''
       }
     }
 }
