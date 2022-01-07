@@ -30,7 +30,7 @@ spec:
         sh '''
         export AWS_DEFAULT_REGION=us-east-1
         cd api/
-        make push
+        make build
         cd ..
         '''
       }
