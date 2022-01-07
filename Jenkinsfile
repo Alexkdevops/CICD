@@ -6,44 +6,16 @@ metadata:
     some-label: some-label-value
 spec:
   containers:
-  - name: jenkins-slave
-    image: mshaibek/jenkins-slave-312
+  - name: busybox
+    image: busybox
     command:
     - cat
     tty: true
-    env:
-    - name: DOCKER_HOST
-      value: 'tcp://localhost:2375'
-  - name: dind-daemon
-    image: 'docker:18-dind'
-    command:
-    - dockerd-entrypoint.sh
-    tty: true
-    securityContext: 
-      privileged: true 
 """
 ) {
     node(POD_LABEL) {
-      // properties([
-	    //     pipelineTriggers([
-	    //       [$class: 'GitHubPushTrigger'],
-	    //       ])
-	    // ])
-      // checkout scm
       container('busybox') {
         sh "hostname ; sleep 60"
-        // export AWS_DEFAULT_REGION=us-east-1
-        // cd api/
-        // make build
-        // make push
-        // make deploy
-        // cd ..
-        // cd web/
-        // make build
-        // make push
-        // make deploy
-        // cd ..
-        // '''
       }
     }
 }
