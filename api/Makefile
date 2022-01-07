@@ -1,4 +1,4 @@
-version = 1.4
+version = 1.5
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
 image = $(account).dkr.ecr.us-east-1.amazonaws.com/apiapp:$(version)
 
@@ -7,7 +7,9 @@ login:
 
 build: login
 	@docker build -t $(image) .
+	@echo "Done-1"
 	@docker tag apiapp:$(version) $(account).dkr.ecr.us-east-1.amazonaws.com/apiapp:$(version)
+	@echo "Done-2"
 
 push: build
 	@docker push $(image)
