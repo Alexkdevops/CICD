@@ -29,12 +29,12 @@ spec:
         // sh "hostname ; sleep 5"
         sh '''
         export AWS_DEFAULT_REGION=us-east-2
-        pushd api/
+        cd api/
         make push
-        popd
-        pushdweb/
+        cd ..
+        cd web/
         make push
-        popd
+        cd ..
         '''
       }
     }
