@@ -1,9 +1,9 @@
 version = 1.5
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
-image = $(account).dkr.ecr.us-east-1.amazonaws.com/apiapp:$(version)
+image = $(account).dkr.ecr.us-east-2.amazonaws.com/apiapp:$(version)
 
 login:
-	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(account).dkr.ecr.us-east-1.amazonaws.com
+	aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $(account).dkr.ecr.us-east-2.amazonaws.com
 
 build: login
 	@docker build -t $(image) .
