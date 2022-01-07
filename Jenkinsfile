@@ -17,7 +17,7 @@ spec:
   - name: dind-daemon
     image: 'docker:18-dind'
     command:
-    - dockerd-entypoint.sh
+    - dockerd-entrypoint.sh
     tty: true
     securityContext:
       privileged: true    
