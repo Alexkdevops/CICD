@@ -26,8 +26,8 @@ spec:
     node(POD_LABEL) {
       checkout scm  
       container('jenkins-slave') {
-        sh "hostname ; sleep 5"
-        // export AWS_DEFAULT_REGION=us-east-1
+        // sh "hostname ; sleep 5"
+        export AWS_DEFAULT_REGION=us-east-1
         // cd api/
         // make push
         // cd ..
