@@ -28,7 +28,7 @@ spec:
       properties([
 	    pipelineTriggers([
           [$class: 'GitHubPushTrigger'],
-          pollSCM('*/3 * * * *'),
+          poll SCM('*/3 * * * *'),
 	      ])
 	    ])  
       checkout scm  
