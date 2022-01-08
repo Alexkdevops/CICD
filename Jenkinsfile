@@ -24,6 +24,12 @@ spec:
 """
 ) {
     node(POD_LABEL) {
+      // This is trigger for webhook in githoob  
+      properties([
+	    pipelineTriggers([
+          [$class: 'GitHubPushTrigger'],
+	      ])
+	    ])  
       checkout scm  
       container('jenkins-slave') {
         // sh "hostname ; sleep 5"
