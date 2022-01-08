@@ -19,28 +19,26 @@ spec:
     command:
     - dockerd-entrypoint.sh
     tty: true
-    securityContext: 
-      privileged: true 
+    securityContext:
+      privileged: true    
 """
 ) {
     node(POD_LABEL) {
+      // This is trigger for webhook in github  
       properties([
-	        pipelineTriggers([
-	          [$class: 'GitHubPushTrigger'],
-	          ])
-	    ])
-      checkout scm
+	    pipelineTriggers([
+          [$class: 'GitHubPushTrigger'],
+	      ])
+	    ])  
+      checkout scm  
       container('jenkins-slave') {
-        sh ''' 
-        export AWS_DEFAULT_REGION=us-east-1
+        // sh "hostname ; sleep 5"
+        sh '''
+        export AWS_DEFAULT_REGION=us-east-2
         cd api/
-        make build
-        make push
         make deploy
         cd ..
         cd web/
-        make build
-        make push
         make deploy
         cd ..
         '''

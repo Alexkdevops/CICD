@@ -1,22 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: NAMESPACE
+
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: marsel-demo-api
+  name: alex-api
   namespace: NAMESPACE
   labels:
-    app: marsel-demo-api
+    app: alex-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: marsel-demo-api
+      app: alex-api
   template:
     metadata:
       labels:
-        app: marsel-demo-api
+        app: alex-api
     spec:
       containers:
-      - name: marsel-demo-api
-        image: ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/apiapp:IMAGEVERSION
+      - name: alex-api
+        image: ACCOUNT.dkr.ecr.us-east-2.amazonaws.com/apiapp:IMAGEVERSION
         ports:
         - containerPort: 80
