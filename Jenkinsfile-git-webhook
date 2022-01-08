@@ -27,7 +27,7 @@ spec:
       // This is trigger for webhook in github!  
       properties([
 	    pipelineTriggers([
-          [$class: 'GitHubPushTrigger'],
+          [$class: 'GitHubPushTrigger'], // adding this in webhook section //http: IP:port/github-webhook/
 	      ])
 	    ])  
       checkout scm  
