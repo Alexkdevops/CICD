@@ -1,7 +1,7 @@
-version = 1.5
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
 image = $(account).dkr.ecr.us-east-2.amazonaws.com/apiapp:$(version)
-namespace = cicd-space
+stage = dev
+include stages/$(stage)
 
 login:
 	aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $(account).dkr.ecr.us-east-2.amazonaws.com
@@ -9,9 +9,9 @@ login:
 build: login
 	@docker build -t $(image) .
 
-push: build
+push: 
 	@docker push $(image)
 
-deploy: push
+deploy: 
 	@cat deployment.yaml | sed "s|IMAGEVERSION|$(version)|g;s|NAMESPACE|$(namespace)|g;s|ACCOUNT|$(account)|g" | kubectl apply -f -
 
