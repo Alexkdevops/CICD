@@ -2,7 +2,7 @@
 
 # this will force script to exit if any command fails
 
-set -e
+set -ex # good for bash-scripting trublesoots
 
 export AWS_DEFAULT_REGION=us-east-2
 
