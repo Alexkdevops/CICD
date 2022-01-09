@@ -11,9 +11,9 @@ login:
 build: login
 	@docker build -t $(image) .
 
-push: build
+push: 
 	@docker push $(image)
 
-deploy: push
+deploy: 
 	@cat deployment.yaml | sed "s|IMAGEVERSION|$(version)|g;s|NAMESPACE|$(namespace)|g;s|ACCOUNT|$(account)|g" | kubectl apply -f -
 
