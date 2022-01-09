@@ -2,8 +2,8 @@ version = 1.6
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
 image = $(account).dkr.ecr.us-east-2.amazonaws.com/webapp:$(version)
 #namespace = cicd-space
-namespace = prod
-#namespace = dev
+#namespace = prod
+namespace = dev
 
 login:
 	aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $(account).dkr.ecr.us-east-2.amazonaws.com
