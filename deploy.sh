@@ -26,4 +26,16 @@ then
     make push namespace=dev
     make deploy namespace=dev
     cd ..
-elif [$BRANCH_NAME == "prod"]
+elif [[ $BRANCH_NAME == "prod" ]]
+then
+    cd api/
+    make build namespace=prod
+    make push namespace=prod
+    make deploy namespace=prod
+    cd ..
+    cd web/
+    make build namespace=prod
+    make push namespace=prod
+    make deploy namespace=prod
+    cd ..
+fi    
