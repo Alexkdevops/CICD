@@ -1,4 +1,3 @@
-version = 1.6
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
 image = $(account).dkr.ecr.us-east-2.amazonaws.com/webapp:$(version)
 stage = dev
