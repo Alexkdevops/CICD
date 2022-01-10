@@ -16,14 +16,13 @@ elif [[ $BRANCH_NAME == "prod" ]]
 then
     stag=prod
 fi    
-
 cd api/
-make build stage=$(stag)
-make push stage=$(stag)
-make deploy stage=$(stag)
+make build stage=$stag
+make push stage=$stag
+make deploy stage=$stag
 cd ..
 cd web/
-make build stage=$(stag)
-make push stage=$(stag)
-make deploy stage=$(stag)
+make build stage=$stag
+make push stage=$stag
+make deploy stage=$stag
 cd ..
