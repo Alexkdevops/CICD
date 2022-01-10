@@ -8,22 +8,22 @@ export AWS_DEFAULT_REGION=us-east-2
 
 if [[ $BRANCH_NAME == "main" ]]
 then
-    stage=main
+    stag=main
 elif [[ $BRANCH_NAME == "dev" ]]
 then
-    stage=dev
+    stag=dev
 elif [[ $BRANCH_NAME == "prod" ]]
 then
-    stage=prod
+    stag=prod
 fi    
 
 cd api/
-make build stage=$(stage)
-make push stage=$(stage)
-make deploy stage=$(stage)
+make build stage=$(stag)
+make push stage=$(stag)
+make deploy stage=$(stag)
 cd ..
 cd web/
-make build stage=$(stage)
-make push stage=$(stage)
-make deploy stage=$(stage)
+make build stage=$(stag)
+make push stage=$(stag)
+make deploy stage=$(stag)
 cd ..
