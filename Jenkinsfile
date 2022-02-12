@@ -25,13 +25,13 @@ spec:
 ) {
     node(POD_LABEL) {
       // This is trigger for webhook in github!  
-      properties([
-	    pipelineTriggers([
-          [$class: 'GitHubPushTrigger'],
-          pollSCM('*/1 * * * *'),
-	      ])
-	    ])  
-      checkout scm  
+      // properties([
+	    // pipelineTriggers([
+      //     [$class: 'GitHubPushTrigger'],
+      //     pollSCM('*/1 * * * *'),
+	    //   ])
+	    // ])  
+      // checkout scm  
       container('jenkins-slave') {
         // sh "hostname ; sleep 5"
         sh '''
