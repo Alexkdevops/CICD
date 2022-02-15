@@ -6,13 +6,13 @@ namespace = api
 login:
 	aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $(account).dkr.ecr.us-east-2.amazonaws.com
 
-build: login
+build:login
 	@docker build -t $(image) .
 
-push: 
+push:build
 	@docker push $(image)
 
-deploy:
+deploy:push
 	@cat kubernetes/namespace.yaml | sed "s|NAMESPACE|$(namespace)|g" | kubectl apply -f -
 	@cat kubernetes/deployment.yaml | sed "s|IMAGEVERSION|$(version)|g;s|NAMESPACE|$(namespace)|g;s|ACCOUNT|$(account)|g" | kubectl apply -f -
 

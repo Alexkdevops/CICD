@@ -28,14 +28,16 @@ spec:
       properties([
 	    pipelineTriggers([
           [$class: 'GitHubPushTrigger'],
-          pollSCM('*/1 * * * *'),
 	      ])
 	    ])  
       checkout scm  
       container('jenkins-slave') {
         // sh "hostname ; sleep 5"
         sh '''
-        ./deploy.sh
+        export AWS_DEFAULT_REGION=us-east-2
+        cd api/
+        make deploy 
+        cd ..
         '''
       }
     }
