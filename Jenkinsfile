@@ -28,12 +28,10 @@ spec:
       properties([
 	    pipelineTriggers([
           [$class: 'GitHubPushTrigger'],
-          pollSCM('*/1 * * * *'),
 	      ])
 	    ])  
       checkout scm  
       container('jenkins-slave') {
-        // sh "hostname ; sleep 5"
         sh '''
         ./deploy.sh
         '''

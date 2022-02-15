@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: NAMESPACE
+  name: api
 
 
 ---
@@ -9,7 +9,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: alex-api
-  namespace: NAMESPACE
+  namespace: api
   labels:
     app: alex-api
 spec:
